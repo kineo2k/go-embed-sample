@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"embed"
+	"go-embed-sample/filebox"
+	"go-embed-sample/server"
+)
+
+//go:embed statics
+var embedFiles embed.FS
 
 func main() {
-	fmt.Println("Hello Gump!")
+	filebox.AddFiles(embedFiles)
+
+	server.EchoStart(8080)
 }
